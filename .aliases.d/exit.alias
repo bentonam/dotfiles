@@ -1,0 +1,8 @@
+# Exit commands
+alias :q="exit"
+alias ext="exit"
+alias xt="exit"
+alias by="exit"
+alias bye="exit"
+alias die="exit"
+alias quit="exit"

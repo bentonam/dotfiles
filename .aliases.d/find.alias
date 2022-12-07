@@ -1,0 +1,2 @@
+#  Find a file recursively
+alias f='find . | grep '

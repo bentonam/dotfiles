@@ -1,0 +1,2 @@
+# Start calculator with math support
+alias bc='bc -l'

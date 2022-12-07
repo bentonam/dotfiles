@@ -1,0 +1,7 @@
+# better listings
+alias ls='ls -CHG --color'
+alias la='ls -ahG'
+alias ll='ls -ahlG'
+
+# Making directories
+alias mkdir="mkdir -pv"

@@ -1,0 +1,2 @@
+# Show open ports
+alias ports='netstat -tulanp'

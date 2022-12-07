@@ -1,0 +1,2 @@
+# Find an old command
+alias h='history|grep '

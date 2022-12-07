@@ -1,0 +1,50 @@
+# docker functions
+function dock-run() {
+  sudo docker run -i -t --privileged $@ ;
+}
+function dock-exec() {
+  sudo docker exec -i -t $@ /bin/bash ;
+}
+function dock-log() {
+  sudo docker logs --tail=all -f $@ ;
+}
+function dock-port() {
+  sudo docker port $@ ;
+}
+function dock-vol() {
+  sudo docker inspect --format '{{ .Volumes }}' $@ ;
+}
+function dock-ip() {
+  sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' $@ ;
+}
+function dock-rmc() {
+  sudo docker rm sudo docker ps -qa --filter 'status=exited' ;
+}
+function dock-rmi() {
+  sudo docker rmi -f sudo docker images | grep '^<none>' | awk '{print $3}' ;
+}
+function dock-stop() {
+  sudo docker stop $(docker ps -a -q);
+}
+function dock-rm() {
+  sudo docker rm $(docker ps -a -q);
+}
+function dock-do() {
+  if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 start|stop|pause|unpause|"
+  fi
+
+  for c in $(sudo docker ps -a | awk '{print $1}' | sed "1 d"); do
+    sudo docker $1 $c
+  done
+}
+# Enter a running Docker container.
+function denter() {
+ if [[ ! "$1" ]] ; then
+     echo "You must supply a container ID or name."
+     return 0
+ fi
+
+ docker exec -it $1 bash
+ return 0
+}

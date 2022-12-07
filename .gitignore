@@ -2,3 +2,17 @@
 *.LSOverride
 Thumbs.db
 .bundle
+*.xls
+*.xlsx
+*.doc
+*.docx
+*.ppt
+*.pptx
+.idea
+.todo
+*.zip
+*.tar
+*.tar.gz
+.apdisk
+*.bak
+*.log

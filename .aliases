@@ -1,0 +1,3 @@
+# Note: support has been added for a $HOME/aliases.d/ directory, any file with a *.alias extension will automatically be sourced as well
+
+# optionally, place any additional aliases here

@@ -1,0 +1,2 @@
+# Make mount command output pretty and human readable format
+alias mount='mount |column -t'

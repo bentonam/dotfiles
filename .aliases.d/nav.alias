@@ -1,0 +1,9 @@
+# Easier navigation: .., ..., ...., ..... and --
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias -- -="cd -"
+
+# Prevent common typos
+alias cd..="cd .."

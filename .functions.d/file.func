@@ -1,0 +1,91 @@
+# file / directory functions
+# Creates the directory if it doesn't exist, and changes into it
+function mcd {
+  mkdir -p "${1}" &&
+  cd "${1}"
+}
+
+# counts the # of files in a directory
+function numfiles() {
+  local N
+  N="$(ls $1 | wc -l)";
+  echo "$N files in $1";
+}
+
+function spaces2underscores (){
+    targetdir="$*"
+    if [ ! -z "$1" ]
+    then
+       if [ -d "${targetdir}" ]
+       then
+          oldpwd=$(pwd)
+       else
+          echo "Not a valid directory."
+          return 1
+       fi
+    fi
+    read -n1 -p "Rename all files in ${targetdir}? [y/N]"
+    case ${REPLY} in
+    "Y" | "y" )
+       cd "${targetdir}"
+       fncounter=0
+       for fn in *
+       do
+          newfn=$(printf "${fn}" | tr ' ' '_')
+          if [ "${newfn}" != "${fn}" ]
+          then
+             mv "${fn}" "${newfn}"
+             fncounter=$((${fncounter}+1))
+          fi
+       done
+       cd "${oldpwd}"
+       echo "Successfully replaced spaces by underscores in ${fncounter} filename(s)."
+       echo
+       ;;
+    *         )
+       echo "Operation aborted."
+       echo
+       return 0
+       ;;
+    esac
+    unset targetdir oldpwd REPLY fncounter fn newfn
+}
+
+function underscores2spaces (){
+    targetdir="$*"
+    if [ ! -z "$1" ]
+    then
+       if [ -d "${targetdir}" ]
+       then
+          oldpwd=$(pwd)
+       else
+          echo "Not a valid directory."
+          return 1
+       fi
+    fi
+    read -n1 -p "Rename all files in ${targetdir}? [y/N]"
+    case ${REPLY} in
+    "Y" | "y" )
+       cd "${targetdir}"
+       fncounter=0
+       for fn in *
+       do
+          newfn=$(printf "${fn}" | tr '_' ' ')
+          if [ "${newfn}" != "${fn}" ]
+          then
+             mv "${fn}" "${newfn}"
+             fncounter=$((${fncounter}+1))
+          fi
+       done
+       cd "${oldpwd}"
+       echo "Successfully replaced underscores by spaces in ${fncounter} filename(s)."
+       echo
+       ;;
+    *         )
+       echo "Operation aborted."
+       echo
+       return 0
+       ;;
+    esac
+    unset targetdir oldpwd REPLY fncounter fn newfn
+}
