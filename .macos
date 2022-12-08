@@ -78,6 +78,14 @@ defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
 ###############################################################################
+# Menu Bar                                                                    #
+###############################################################################
+# always show the Focus menu bar icon
+defaults write com.apple.controlcenter "NSStatusItem Visible FocusModes" -int 1
+# always show the Sound menu bar icon 
+defaults write com.apple.controlcenter "NSStatusItem Visible Sound" -int 1
+
+###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
@@ -622,6 +630,23 @@ sudo systemsetup -setcomputersleep Off > /dev/null
 # 3: Copy RAM to disk so the system state can still be restored in case of a
 #    power failure.
 sudo pmset -a hibernatemode 0
+
+
+###############################################################################
+# Add Applications to Run at Login                                            #
+###############################################################################
+for app in "Activity Monitor" \
+  "Spectacle" \
+  "Messages" \
+  "Fantastical" \
+  "iTerm2" \
+  "Visual Studio Code" \
+  "Alfred 5" \
+  "Amphetamine" \
+  "1Password"; do
+  osascript -e "tell application \"System Events\" to make login item at end with properties {path:\"/Applications/${app}.app/\", hidden:false}" > /dev/null 2>&1
+done
+
 
 ###############################################################################
 # Kill/restart affected applications                                          #
