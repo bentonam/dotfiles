@@ -1,6 +1,7 @@
 [user]
-  name = Aaron Benton
-  email = bentonam@gmail.com
+	name = Aaron Benton
+	email = aaron.benton@grafana.com
+	signingkey = F9AD724BA36DC183099A2DCE9C6A6EDFE1203396
 [core]
   editor = vim
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
@@ -8,8 +9,6 @@
   autocrlf = input
 [color]
   interactive = auto
-  ui = auto
-[color]
   ui = auto
 [color "branch"]
   current = yellow bold
@@ -41,9 +40,9 @@
 [credential]
   helper = osxkeychain
 [push]
-  default = matching
+  default = simple
 [merge]
-  tool = kdiff3
+	strategy = ort
 [difftool]
   prompt = false
 [alias]
@@ -61,3 +60,12 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[commit]
+	gpgsign = true
+[gpg]
+	program = /opt/homebrew/bin/gpg
+	format = openpgp
+[fetch]
+	parallel = 4
+[fetch]
+	prune = true
